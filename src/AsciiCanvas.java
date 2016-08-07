@@ -230,7 +230,6 @@ public  class AsciiCanvas extends Component {
     }
 
 
-
     public void anim() {
 
         go();
