@@ -14,7 +14,7 @@ public class AsciiAnim extends JFrame implements ActionListener{
     static JButton btnAnim = new JButton("animate");
 
     JPanel pnlSouth = new JPanel();
-    Timer timer = new Timer(1, this);
+    Timer timer = new Timer(100, this);
 
     boolean animating = false;
 
@@ -24,6 +24,10 @@ public class AsciiAnim extends JFrame implements ActionListener{
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
         this.setSize(640, 480);
+
+        AsciiCanvas.mainContent = new JTextArea();
+//        this.getContentPane().setLayout(new BorderLayout());
+        this.add(AsciiCanvas.mainContent, BorderLayout.CENTER);
     } // end constructor
 
     public void setUpGUI(){
@@ -34,15 +38,6 @@ public class AsciiAnim extends JFrame implements ActionListener{
         pnlMain.add(cnvAnim, BorderLayout.CENTER);
         pnlMain.add(pnlSouth, BorderLayout.SOUTH);
 
-        // I HAVE ADDED THIS ONE
-//        init();
-        this.pack();
-        AsciiCanvas.startFrame = 0;
-        AsciiCanvas.mainContent = new JTextArea();
-        this.add(AsciiCanvas.mainContent, BorderLayout.CENTER);
-//        this.getContentPane().setLayout(new BorderLayout());
-        this.add(AsciiCanvas.mainContent, BorderLayout.CENTER);
-        // END OF WHAT I HAVE ADDED
 
         pnlSouth.add(btnPrev);
         pnlSouth.add(btnNext);

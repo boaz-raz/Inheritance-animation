@@ -12,11 +12,11 @@ import static com.sun.java.accessibility.util.AWTEventMonitor.addActionListener;
 
 public  class AsciiCanvas extends Component {
 
-    static final AsciiCanvas T = null;
+//    static final AsciiCanvas T = null;
 //    public AsciiAnim s;
     private int frame; // the current frame
-    boolean keepgoing = true;
-    boolean end = false;
+    private boolean keepgoing = true;
+    private boolean end = false;
 
     public static int startFrame = 0;
 
@@ -27,15 +27,16 @@ public  class AsciiCanvas extends Component {
     // add java select file
     JavaFilter selectfile = new JavaFilter();
 
-    // loading file
-
     static JTextArea mainContent = null;
+
+
     File xfile = new File("untitled.txt");
 
 //    Check this constractor???
 
-//    public AsciiCanvas() {
-//    }
+    public AsciiCanvas() {
+
+    }
 
 
 //    public void init() {
@@ -64,7 +65,10 @@ public  class AsciiCanvas extends Component {
                 mainContent.setText(tLines);
                 dataIn.close(); // close file
             }
-            Thread.sleep(1000);
+           /*
+            //TODO check this line
+           Thread.sleep(1000);
+           */
         }// end try
         catch (Exception e) {
             System.err.println("Error: " + e.getMessage());
@@ -74,85 +78,67 @@ public  class AsciiCanvas extends Component {
     }// end go
 
     public void prevFrame() {
-        AsciiAnim.btnPrev.addActionListener(new ActionListener() {
+        System.out.println("prevFrame method was called");
+        if (startFrame > 0) {
+            startFrame--;
+            nextBefore(address);
+        }
 
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("prevFrame method was called");
-                if (startFrame > 0) {
-                    startFrame--;
-                    nextBefore(address);
-                }
-
-            }// avtion event back
-        });// end action listener back
-    }
+    } // end prevFrame method
 
 
     public void nextFrame() {
-        AsciiAnim.btnNext.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("nextFrame method was called");
-                if (startFrame > 0) {
-                    startFrame++;
-                    nextBefore(address);
-                }// end if
+        System.out.println("nextFrame method was called");
 
-            }// end action event next button
-        });
+        if (startFrame > 0) {
+            startFrame++;
+            nextBefore(address);
+        };
     }
     public void load() {
-        AsciiAnim.btnLoad.addActionListener(new ActionListener() {
+        System.out.println("load btn method was called"); // this is for testing
 
-            public void actionPerformed(ActionEvent e) {
-                Object click = e.getSource();
-                if (click == AsciiAnim.btnLoad) {
-                    JFileChooser openMyFile = new JFileChooser();
-                    FileNameExtensionFilter filter = new FileNameExtensionFilter(
-                            "txt file ", "txt");
-                    openMyFile.addChoosableFileFilter(filter);
+        JFileChooser openMyFile = new JFileChooser();
+        FileNameExtensionFilter filter = new FileNameExtensionFilter(
+                "txt file ", "txt");
+        openMyFile.addChoosableFileFilter(filter);
 
-                    int returN = openMyFile.showDialog(null, "open file");
+        int returN = openMyFile.showDialog(null, "open file");
 
-                    if (returN == JFileChooser.APPROVE_OPTION)
-                        ;
-                    File file = openMyFile.getSelectedFile();
+        if (returN == JFileChooser.APPROVE_OPTION)
+            ;
+        File file = openMyFile.getSelectedFile();
 
-                    try {
-                        BufferedReader reader =
+        try {
+            BufferedReader reader =
 
-                                new BufferedReader(new FileReader(file
-                                        .getAbsolutePath()));
-                        String line;
+                    new BufferedReader(new FileReader(file
+                            .getAbsolutePath()));
+            String line;
 
-                        while ((line = reader.readLine()) != null) {
-                            ((Appendable) openMyFile).append(line);
-                            ((Appendable) openMyFile).append("\n");
-                        }
+            while ((line = reader.readLine()) != null) {
+                ((Appendable) openMyFile).append(line);
+                ((Appendable) openMyFile).append("\n");
+            }
 
-                        reader.close();
-                    } catch (Exception ess) {
-                    }
-                }
+            reader.close();
+        } catch (Exception ess) {
+        }
 
-            }// end actionPerformed
-        });// end action listener load
     } // end load method
 
     public void save() {
-        AsciiAnim.btnSave.addActionListener(new ActionListener() {
+        saveFile();
 
-            public void actionPerformed(ActionEvent e) {
-                end = saveFile();
-                {
-                    if (!end) {
-                        JOptionPane.showMessageDialog(null, "saving file ",
-                                "File Save Error", JOptionPane.ERROR_MESSAGE);
-                    } // end if
+//        end = saveFile();
+//        {
+//            if (!end) {
+//                JOptionPane.showMessageDialog(null, "saving file ",
+//                        "File Save Error", JOptionPane.ERROR_MESSAGE);
+//            } // end if
+//
+//        }// end saveFile
 
-                }// end saveFile
-
-            } // end action event save button
-        });
     }
     public boolean saveFile() {
         File file = null;
@@ -246,6 +232,8 @@ public  class AsciiCanvas extends Component {
         }
 
     }
+
+
 } // end AsciiCanvas class
 
 
