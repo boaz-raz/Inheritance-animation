@@ -1,6 +1,7 @@
 import javax.swing.*;
 import javax.swing.filechooser.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.io.*;
 import java.util.ArrayList;
 
@@ -8,6 +9,10 @@ import java.util.ArrayList;
 
 
 public  class AsciiCanvas extends Component {
+
+
+    // add InheritanceAnimation
+    static final AsciiCanvas T = null;
 
      int frame; // the current frame
      boolean keepgoing = true;
@@ -38,7 +43,7 @@ public  class AsciiCanvas extends Component {
 //    }
 
 
-    public void anim() {
+    public void go() {
         System.out.println("anim method was called");
         try {
             for (int i = startFrame; i < address.size() && keepgoing; i++) {
@@ -50,7 +55,7 @@ public  class AsciiCanvas extends Component {
                 String strLine;
 
                 // reading file's line
-                String tLines = ",";
+                String tLines = "";
 
                 while ((strLine = buffer.readLine()) != null) {
                     tLines = tLines + strLine + "\n";
@@ -59,10 +64,7 @@ public  class AsciiCanvas extends Component {
                 mainContent.setText(tLines);
                 dataIn.close(); // close file
             }
-           /*
-            //TODO check this line
-           Thread.sleep(1000);
-           */
+            Thread.sleep(1000);
         }// end try
         catch (Exception e) {
             System.err.println("Error: " + e.getMessage());
@@ -228,6 +230,11 @@ public  class AsciiCanvas extends Component {
     }
 
 
+
+    public void anim() {
+
+        go();
+    }
 } // end AsciiCanvas class
 
 

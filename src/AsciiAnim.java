@@ -25,9 +25,7 @@ public class AsciiAnim extends JFrame implements ActionListener{
         this.setVisible(true);
         this.setSize(640, 480);
 
-        AsciiCanvas.mainContent = new JTextArea();
-//        this.getContentPane().setLayout(new BorderLayout());
-        this.add(AsciiCanvas.mainContent, BorderLayout.CENTER);
+
     } // end constructor
 
     public void setUpGUI(){
@@ -51,6 +49,11 @@ public class AsciiAnim extends JFrame implements ActionListener{
         btnAnim.addActionListener(this);
         btnSave.addActionListener(this);
         btnLoad.addActionListener(this);
+
+
+        // MY ADD CODE
+        AsciiCanvas.mainContent = new JTextArea();
+        this.add(AsciiCanvas.mainContent, BorderLayout.CENTER);
 
     } // end setUpGUI
 
