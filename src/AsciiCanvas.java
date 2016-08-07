@@ -1,27 +1,22 @@
 import javax.swing.*;
 import javax.swing.filechooser.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.*;
-import java.math.BigInteger;
 import java.util.ArrayList;
 
-import static com.sun.java.accessibility.util.AWTEventMonitor.addActionListener;
+
 
 
 public  class AsciiCanvas extends Component {
 
-//    static final AsciiCanvas T = null;
-//    public AsciiAnim s;
-    private int frame; // the current frame
-    private boolean keepgoing = true;
-    private boolean end = false;
+     int frame; // the current frame
+     boolean keepgoing = true;
+     boolean end = false;
 
     public static int startFrame = 0;
 
     // initial Array List
-    ArrayList<String> address = new ArrayList<>();
+    ArrayList<String> address = new ArrayList<String>();
     public static String[] states = { "1", "2", "3", "4" };
 
     // add java select file
@@ -32,7 +27,6 @@ public  class AsciiCanvas extends Component {
 
     File xfile = new File("untitled.txt");
 
-//    Check this constractor???
 
     public AsciiCanvas() {
 
@@ -56,7 +50,7 @@ public  class AsciiCanvas extends Component {
                 String strLine;
 
                 // reading file's line
-                String tLines = "";
+                String tLines = ",";
 
                 while ((strLine = buffer.readLine()) != null) {
                     tLines = tLines + strLine + "\n";
